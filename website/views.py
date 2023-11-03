@@ -30,6 +30,6 @@ def student_page():
 
 
 
-@views.route('/home', methods=['GET', 'POST'])
+@views.route('/', methods=['GET', 'POST'])
 def home():
     return render_template('login.html', user=current_user)
