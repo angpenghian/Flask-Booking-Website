@@ -1,0 +1,493 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: #020410;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 25px 12.5%;
+    background: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+
+.navbar a{
+    position: relative;
+    font-size: 16px;
+    color: #e4e4e4;
+    text-decoration: none;
+    font-weight: 500;
+    margin-right: 30px;
+}
+
+.navbar a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 2px;
+    background: #e4e4e4;
+    border-radius: 5px;
+    transform: translateY(10px);
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.navbar a:hover::after {
+    transform: translateY(0px);
+    opacity: 1;
+}
+
+.search-bar {
+    width: 250px;
+    height: 45px;
+    background: transparent;
+    border: 2px solid #e4e4e4;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+}
+
+.search-bar input{
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    color: #e4e4e4;
+    padding-left: 10px;
+}
+
+.search-bar input::placeholder {
+    color: #e4e4e4;
+}
+
+.search-bar button {
+    width: 40px;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.search-bar button i {
+    font-size: 22px;
+    color: #e4e4e4;
+}
+
+.background {
+    width: 100%;
+    height: 100vh;
+    background: url(background.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+    filter: blur(10px);
+}
+
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 75%;
+    height: 550px;
+    background: url(background.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.container2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 75%;
+    background: url(background.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    margin-top: 20px;
+    color: #e4e4e4;
+}
+
+/* Grid container */
+#available-bookings {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px; /* Adjust the gap between grid items */
+    padding: 16px;
+}
+
+/* Individual grid item */
+.booking-card {
+    background-color: rgba(180, 180, 180, 0.5);
+    backdrop-filter: blur(10px);
+    border-radius: 5px;
+    padding: 16px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    color: #020410;
+}
+
+
+.container .content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 58%;
+    height: 100%;
+    background: transparent;
+    padding: 80px;
+    color: #e4e4e4;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.content .logo {
+    font-size: 30px;
+}
+
+.text-sci h2 {
+    font-size: 40px;
+    line-height: 1;
+}
+
+.text-sci h2 span {
+    font-size: 25px;
+}
+
+.text-sci p {
+    font-size: 16px;
+    margin: 20px 0;
+}
+
+.social-icons a i {
+    font-size: 22px;
+    color: #e4e4e4;
+    margin-right: 10px;
+}
+
+.social-icons a:hover i {
+    transform: scale(1.2);
+    transition: 0.5s ease;
+}
+
+.container .logreg-box {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: calc(100% - 58%);
+    height: 100%;
+    overflow: hidden;
+}
+
+.logreg-box .form-box {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    backdrop-filter: blur(20px);
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    color: #e4e4e4;
+}
+
+.logreg-box .form-box.login {
+    transform: translateX(0px);
+    transition: transform 0.6s ease;
+    transition-delay: 0.7s;
+}
+
+.logreg-box.active .form-box.login {
+    transform: translateX(calc(50vw - 50%));
+    transition-delay: 0s;
+}
+
+.logreg-box .form-box.register {
+    transform: translateX(calc(50vw - 50%));
+    transition: transform 0.6s ease;
+    transition-delay: 0s;
+}
+
+.logreg-box.active .form-box.register {
+    transform: translateX(0px);
+    transition-delay: 0.7s;
+}
+
+.form-box h2 {
+    font-size: 32px;
+    text-align: center;
+}
+
+.form-box .input-box {
+    position: relative;
+    width: 340px;
+    height: 50px;
+    border-bottom: 2px solid #e4e4e4;
+    margin: 30px 0;
+}
+
+.input-box input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    color: #e4e4e4;
+    font-weight: 500;
+    padding-right: 28px;
+}
+
+.input-box label {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    font-size: 16;
+    font-weight: 500;
+    pointer-events: none;
+    transition: 0.5s ease;
+}
+
+.input-box input:focus ~ label,
+.input-box input:valid ~ label {
+    top: -5px;
+
+}
+
+.input-box .icon {
+    position: absolute;
+    top: 13px;
+    right: 0;
+    font-size: 19px
+}
+
+.form-box .remember-forgot {
+    font-size: 14.5px;
+    font-weight: 500;
+    margin: -15px 0 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.remember-forgot label input {
+    accent-color: #e4e4e4;
+    margin-right: 3px;
+}
+
+.remember-forgot a {
+    text-decoration: none;
+    color: #e4e4e4;
+}
+
+.remember-forgot a:hover {
+    text-decoration: underline;
+}
+
+.btn {
+    width: 100%;
+    height: 45px;
+    background: #c4103d;
+    border: none;
+    outline: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #e4e4e4;
+    font-weight: 500;
+    box-shadow: 0 0 10px rgb(0, 0, 0, 0.5);
+}
+
+.form-box .login-register {
+    font-size: 14.5px;
+    font-weight: 500;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.login-register p a {
+    color: #e4e4e4;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.login-register p a:hover {
+    text-decoration: underline;
+}
+
+
+/* Radio button for login */
+.radio-toolbar {
+    height: 40px;
+    width: 100%;
+    display: flex;
+    overflow: hidden;
+    border-radius: 5px;
+    border: 2px solid #e4e4e4; /* Border to match the theme */
+    background: transparent; /* Transparent background */
+    margin: 0; /* Remove external spacing */
+    padding: 0; /* Remove internal spacing */
+}
+
+.radio-toolbar label {
+    flex: 1; /* Distribute space equally */
+    background-color: transparent;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    font-family: 'Poppins', sans-serif; /* Match the font-family */
+    color: #e4e4e4; /* Set the text color */
+    border: none; /* Remove any borders */
+    margin: 0; /* Remove any margins */
+    cursor: pointer; /* Cursor pointer for better UX */
+    transition: background-color 0.3s ease, backdrop-filter 0.3s ease; /* Smooth transition for both background and blur effect */
+}
+
+.radio-toolbar label:hover {
+    background-color: rgba(180, 180, 180, 0.5); /* Slightly transparent background on hover */
+    backdrop-filter: blur(10px); /* Blur effect on hover */
+}
+
+.radio-toolbar input[type="radio"]:checked+label {
+    background-color: #c4103d; /* Background color to match button background */
+    color: #e4e4e4;
+    backdrop-filter: none; /* Remove blur effect on selected label */
+}
+
+input[type="radio"] {
+    display: none; /* Hide the radio buttons */
+}
+
+
+
+/* teacher.html */
+.create-room-section,
+.view-rooms-section {
+    background-color: rgba(180, 180, 180, 0.5); /* Updated background color */
+    backdrop-filter: blur(10px); /* Added blur effect */
+    border-radius: 10px; /* Adjusted border radius to match other elements */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Added box shadow for depth */
+    margin: 20px auto; /* Centered horizontally */
+    padding: 20px;
+    width: 75%; /* Set a max width */
+    color: #e4e4e4; /* Updated text color */
+}
+
+.create-room-section h2,
+.view-rooms-section h2 {
+    font-size: 40px; /* Adjusted font size */
+    font-weight: 700; /* Adjusted font weight */
+}
+
+.create-room-section form input,
+.create-room-section form button,
+.view-rooms-section table {
+    font-family: 'Poppins', sans-serif; /* Set font family */
+}
+
+.create-room-section form input::placeholder,
+.create-room-section form button,
+.view-rooms-section table th,
+.view-rooms-section table td {
+    color: #e4e4e4; /* Updated text color */
+}
+
+.create-room-section form button {
+    width: 100px;
+    height: 30px;
+    background: #c4103d;
+    border: none;
+    outline: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #e4e4e4;
+    font-weight: 500;
+    box-shadow: 0 0 10px rgb(0, 0, 0, 0.5);
+}
+
+.create-room-section form button:hover {
+    background-color: #a10d35; /* Darkened background color on hover */
+}
+
+.view-rooms-section table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.view-rooms-section table th,
+.view-rooms-section table td {
+    border: 1px solid #e4e4e4; /* Updated border color */
+    text-align: left;
+    padding: 8px;
+}
+
+.view-rooms-section table tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.1); /* Slightly darkened background color */
+}
+
+
+
+/* student.html */
+.booked-rooms-section,
+.checked-out-rooms-section { /* Apply the same styles to both sections */
+    background-color: rgba(180, 180, 180, 0.5); /* Same background color */
+    backdrop-filter: blur(10px); /* Blur effect */
+    border-radius: 10px; /* Matched border radius */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Box shadow for depth */
+    margin: 20px auto; /* Centered horizontally */
+    padding: 20px;
+    width: 75%; /* Set a max width */
+    color: #e4e4e4; /* Text color */
+}
+
+.booked-rooms-section h2,
+.checked-out-rooms-section h2 { /* Apply the same styles to the h2 headings */
+    font-size: 40px; /* Font size */
+    font-weight: 700; /* Font weight */
+}
+
+.booked-rooms-section table,
+.checked-out-rooms-section table { /* Apply the same styles to the tables */
+    font-family: 'Poppins', sans-serif; /* Font family */
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.booked-rooms-section table th,
+.checked-out-rooms-section table th,
+.booked-rooms-section table td,
+.checked-out-rooms-section table td { /* Apply the same styles to table headers and table data */
+    border: 1px solid #e4e4e4; /* Border color */
+    text-align: left;
+    padding: 8px;
+}
+
+.booked-rooms-section table tr:nth-child(even),
+.checked-out-rooms-section table tr:nth-child(even) { /* Apply the same styles to alternate rows */
+    background-color: rgba(0, 0, 0, 0.1); /* Darkened background for alternate rows */
+}

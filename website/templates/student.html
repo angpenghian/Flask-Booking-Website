@@ -1,0 +1,162 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container2">
+
+
+
+<!-- Error message -->
+    {% with messages = get_flashed_messages(with_categories=true) %} 
+    {% if messages %}
+        {% for category, message in messages %}
+        {% if category == 'error' %}
+            <div class="alert alert-danger alert-dismissable fade show" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+        {% else %}
+            <div class="alert alert-success alert-dismissable fade show" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+        {% endif %}
+        {% endfor %}
+    {% endif %} 
+    {% endwith %}
+<!-- End of error message -->
+
+
+
+<!-- Available Rooms Section -->
+<div class="view-rooms-section">
+    <h2>Available Rooms</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Room Name</th>
+                <th>Room Size</th>
+                <th>Room Price</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for room in rooms %}
+            <!-- Display Room Details -->
+            <tr>
+                <td>{{ room.room_name }}</td>
+                <td>{{ room.room_size }}</td>
+                <td>{{ room.room_price }}</td>
+                <td>{{ room.date.strftime('%Y-%m-%d %H:%M') }}</td>
+                <td>
+                    <form method="post" action="{{ url_for('student.book_room', room_id=room.id) }}">
+                        <button type="submit" style="border: none; padding: 0; cursor: pointer;">Book</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+
+<!-- Booked Rooms Section -->
+<div class="booked-rooms-section">
+    <h2>My Booked Rooms</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Room Name</th>
+                <th>Room Size</th>
+                <th>Room Price</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for room in booked_rooms %}
+            <tr>
+                <td>{{ room.room_name }}</td>
+                <td>{{ room.room_size }}</td>
+                <td>{{ room.room_price }}</td>
+                <td>{{ room.date.strftime('%Y-%m-%d %H:%M') }}</td>
+                <td>
+                    <form method="post" action="{{ url_for('student.cancel_booking', room_id=room.id) }}" style="display: inline-block;">
+                        <button type="submit">Cancel Booking</button>
+                    </form>
+                    <!-- Checkout button -->
+                    <form method="post" action="{{ url_for('student.checkout', room_id=room.id) }}" style="display: inline-block;">
+                        <button type="submit">Check Out</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+
+<!-- Checked Out Rooms Section -->
+<div class="checked-out-rooms-section">
+    <h2>My Checked Out Rooms</h2>
+    <div class="promo-code-section">
+        <input type="text" id="promo-code" placeholder="Enter Promo Code">
+        <button onclick="applyPromoCode()">Apply Promo Code</button>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Room Name</th>
+                <th>Room Size</th>
+                <th>Room Price</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for room in checked_out_rooms %}
+                <tr>
+                    <td>{{ room.room_name }}</td>
+                    <td>{{ room.room_size }}</td>
+                    <!-- Display the updated price here and add an ID for easy manipulation -->
+                    <td id="room-price-{{ room.id }}">{{ room.room_price }}</td>
+                    <td>{{ room.date.strftime('%Y-%m-%d %H:%M') }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+
+<script>
+    function applyPromoCode() {
+        const promoCode = document.getElementById('promo-code').value;
+    
+        // Define a fixed discount amount
+        const fixedDiscount = 100;  // Change this value to your desired discount amount
+    
+        if (promoCode === 'discount2023') {
+            // Apply the fixed discount to all room prices
+            const roomPriceElements = document.querySelectorAll('[id^="room-price-"]');
+            roomPriceElements.forEach(element => {
+                const roomPrice = parseFloat(element.textContent);
+                if (!isNaN(roomPrice)) {
+                    const finalPrice = roomPrice - fixedDiscount;
+                    element.textContent = finalPrice.toFixed(2);
+                }
+            });
+        } else {
+            alert('Invalid promo code');
+        }
+    }
+    </script>
+
+
+
+</div>
+{% endblock %}

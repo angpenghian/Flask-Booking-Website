@@ -1,0 +1,227 @@
+{% extends "base.html" %} 
+{% block title %}Login{% endblock %} 
+{% block content%}
+<div class="container">
+
+
+
+  <!-- Content -->
+  <div class="content">
+    <h2 class="logo">
+      <i class="bx bxl-firebase"></i>UOW Facilities Booking
+    </h2>
+    <div class="text-sci">
+      <h2>
+        Welcome! <br />
+        <span>To Our New Website.</span>
+      </h2>
+
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio,
+        voluptate? At magnam enim error itaque iste nobis, labore optio ab
+        recusandae! Minima sapiente tenetur at. Consectetur blanditiis
+        repellat unde totam.
+      </p>
+
+      <div class="social-icons">
+        <a href="#"><i class="bx bxl-facebook"></i></a>
+        <a href="#"><i class="bx bxl-twitter"></i></a>
+        <a href="#"><i class="bx bxl-instagram"></i></a>
+        <a href="#"><i class="bx bxl-linkedin"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="logreg-box">
+    <div class="form-box login">
+      <form id="loginForm" method="POST" action="/login">
+
+
+
+        <!-- Error message -->
+        {% with messages = get_flashed_messages(with_categories=true) %} 
+          {% if messages %}
+            {% for category, message in messages %}
+              {% if category == 'error' %}
+                <div class="alert alert-danger alter-dismissable fade show" role="alert">
+                  {{ message }}
+                  <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              {% else %}
+                <div class="alert alert-success alter-dismissable fade show" role="alert">
+                  {{ message }}
+                  <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                {% endif %}
+            {% endfor %}
+          {% endif %} 
+        {% endwith %}
+        <!-- End of error message -->
+
+
+
+        <!--@@@@@@@@@@@@@@@@@@@@ Sign In Box @@@@@@@@@@@@@@@@@@@@-->
+        <h2>Sign In</h2>
+
+        <!-- Enter Email -->
+        <div class="input-box">
+          <span class="icon"><i class="bx bxs-envelope"></i></span>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            name="email"
+            placeholder="Enter email"
+          />
+          <label for="email">Email Address</label>
+        </div>
+
+        <!-- Enter Password -->
+        <div class="input-box">
+          <span class="icon"><i class="bx bxs-lock-alt"></i></span>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            name="password"
+            placeholder="Enter password"
+          />
+          <label for="password">Password</label>
+        </div>
+
+        <!-- Select account type -->
+        <!-- Student -->
+        Select account type:<br /><br />
+        <div class="radio-toolbar">
+          <input
+              type="radio"
+              id="login_role_student"
+              name="account_type"
+              value="student"
+              required
+          />
+          <label for="login_role_student">Student</label><br />
+
+          <!-- Teacher -->
+          <input
+              type="radio"
+              id="login_role_teacher"
+              name="account_type"
+              value="teacher"
+              required
+          />
+          <label for="login_role_teacher">Teacher</label><br />
+        </div>
+
+        <!-- Login button -->
+        <br />
+        <button type="submit" class="btn btn-primary">Login</button>
+
+        <!-- Sign Uo -->
+        <div class="login-register">
+          <p>
+              Don't have an account?
+              <a href="#" class="register-link">Sign up</a>
+          </p>
+        </div>
+      </form>
+    </div>
+
+
+
+    <!--@@@@@@@@@@@@@@@@@@@@ Sign Up Box @@@@@@@@@@@@@@@@@@@@-->
+    <div class="form-box register">
+      <form id="registerForm" method="POST" action="/sign-up">
+        <h2>Sign Up</h2>
+
+        <!-- Enter Email -->
+        <div class="input-box">
+          <span class="icon"><i class="bx bxs-envelope"></i></span>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            name="email"
+            placeholder="Enter email"
+          />
+          <label for="email">Email Address</label>
+        </div>
+
+        <!-- Enter Password1 -->
+        <div class="input-box">
+          <span class="icon"><i class="bx bxs-lock-alt"></i></span>
+          <input
+            type="password"
+            class="form-control"
+            id="password1"
+            name="password1"
+            placeholder="Enter password"
+          />
+          <label for="password1">Password</label>
+        </div>
+
+        <!-- Enter Password2 -->
+        <div class="input-box">
+          <span class="icon"><i class="bx bxs-lock-alt"></i></span>
+          <input
+            type="password"
+            class="form-control"
+            id="password2"
+            name="password2"
+            placeholder="Confirm password"
+          />
+          <label for="password2">Password (Confirm)</label>
+        </div>
+
+        <!-- Select account type -->
+        <!-- Student -->
+        Select account type:<br /><br />
+        <div class="radio-toolbar">
+          <input
+              type="radio"
+              id="reg_role_student"
+              name="account_type"
+              value="student"
+              required
+          />
+          <label for="reg_role_student">Student</label><br />
+
+            <!-- Teacher -->
+            <input
+                type="radio"
+                id="reg_role_teacher"
+                name="account_type"
+                value="teacher"
+                required
+            />
+            <label for="reg_role_teacher">Teacher</label><br />
+        </div>
+
+        <!-- Sign up button -->
+        <br />
+        <button type="submit" class="btn btn-primary">Sign up</button>
+
+        <div class="login-register">
+          <p>
+              Already have an account?
+              <a href="#" class="login-link">Sign in</a>
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+  {% block javascript %}
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+  {% endblock %}
+
+
+
+{% endblock %}
